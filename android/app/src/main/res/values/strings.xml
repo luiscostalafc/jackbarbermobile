@@ -1,4 +1,5 @@
 <resources>
     <string name="app_name">JackHair Barber</string>
-		<string moduleConfig="true" name="CodePushDeploymentKey">DeploymentKey</string>
+		<!-- <string moduleConfig="true" name="CodePushDeploymentKey">DeploymentKey</string>
+		<string name="reactNativeCodePush_androidDeploymentKey" moduleConfig="true" translatable="false">YOU_ANDROID_CODEPUSH_KEY</string> -->
 </resources>
