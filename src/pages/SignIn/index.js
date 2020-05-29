@@ -72,7 +72,7 @@ export default function SignIn({ navigation }) {
 						style={{ color: '#EEDD82' }}
 						onPress={() => Linking.openURL('https://salaojack.com/')}
 					>
-					 	 Visite nosso site!
+						Visite nosso site!
 					</SignLinkText>
 				</SignLink>
 			</Container>
