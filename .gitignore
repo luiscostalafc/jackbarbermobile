@@ -3,6 +3,7 @@
 # Teste
 .env
 .DS_Store
+.node_modules
 
 # Xcode
 #
