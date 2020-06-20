@@ -1,54 +1,45 @@
 import React, { useState, useEffect } from 'react';
-import { View, ActivityIndicator, StyleSheet, Platform } from 'react-native';
-
-import { PERMISSIONS, request } from 'react-native-permissions';
+import {
+	View,
+	ActivityIndicator,
+	StyleSheet,
+	Alert,
+	Button,
+} from 'react-native';
 import Geolocation from '@react-native-community/geolocation';
 import MapView, { Marker } from 'react-native-maps';
-// @react-native-community/geolocation
+
 import Geocoder from 'react-native-geocoding';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 
 import markerImage from '../../assets/logo1.png';
 import api from '../../services/api';
 
-import { LocationText, LocationBox } from './styles';
-
 Geocoder.init('AIzaSyCehC1yRfumAO8cYDZEQBC98kYFJdXWG_w');
+
+const styles = StyleSheet.create({
+	container: {
+		...StyleSheet.absoluteFill,
+		backgroundColor: '#323239',
+		alignItems: 'center',
+		justifyContent: 'center',
+	},
+
+	map: {
+		...StyleSheet.absoluteFillObject,
+	},
+});
 
 function Geo() {
 	const [loading, setLoading] = useState(true);
+	const [coordinates, setCoordinates] = useState({});
 	const [points, setPoints] = useState([]);
-	const [location, setLocation] = useState([]);
-
-	const [region, setRegion] = useState({
-		latitude: 0,
-		longitude: 0,
-		latitudeDelta: 0.0143,
-		longitudeDelta: 0.0134,
-		location: null,
-	});
-
-	request(
-		Platform.select({
-			android: PERMISSIONS.ANDROID.ACESS_FINE_LOCATION,
-			ios: PERMISSIONS.IOS.LOCATION_WHEN_IN_USE,
-		})
-	);
 
 	useEffect(() => {
 		Geolocation.getCurrentPosition(
-			async ({ coords: { latitude, longitude } }) => {
-				const response = await Geocoder.from({ latitude, longitude });
-				const address = response.results[0].formatted_address;
-				const shortAddress = address.substring(address);
-
-				setRegion({
-					...region,
-					latitude,
-					longitude,
-				});
+			({ coords }) => {
+				setCoordinates(coords);
 				setLoading(false);
-				setLocation(shortAddress);
 			},
 			error => {
 				console.log(error);
@@ -61,7 +52,7 @@ function Geo() {
 		async function getData() {
 			try {
 				const { data } = await api.get(`/points`, {
-					params: region,
+					params: coordinates,
 				});
 
 				setPoints(data);
@@ -70,8 +61,8 @@ function Geo() {
 			}
 		}
 
-		if (region) getData();
-	}, [region]);
+		if (coordinates) getData();
+	}, [coordinates]);
 
 	function renderPoints() {
 		return points.map(point => (
@@ -94,8 +85,8 @@ function Geo() {
 			) : (
 				<MapView
 					initialRegion={{
-						latitude: region.latitude,
-						longitude: region.longitude,
+						latitude: coordinates.latitude,
+						longitude: coordinates.longitude,
 						latitudeDelta: 0.01,
 						longitudeDelta: 0.01,
 					}}
@@ -104,19 +95,6 @@ function Geo() {
 					loadingEnabled
 				>
 					{renderPoints()}
-					<>
-						<Marker
-							coordinate={{
-								latitude: parseFloat(region.latitude),
-								longitude: parseFloat(region.longitude),
-							}}
-							archor={{ x: 0, y: 0 }}
-						>
-							<LocationBox>
-								<LocationText>{location}</LocationText>
-							</LocationBox>
-						</Marker>
-					</>
 				</MapView>
 			)}
 		</View>
@@ -130,16 +108,3 @@ Geo.navigationOptions = {
 };
 
 export default Geo;
-
-const styles = StyleSheet.create({
-	container: {
-		...StyleSheet.absoluteFill,
-		backgroundColor: '#323239',
-		alignItems: 'center',
-		justifyContent: 'center',
-	},
-
-	map: {
-		...StyleSheet.absoluteFillObject,
-	},
-});

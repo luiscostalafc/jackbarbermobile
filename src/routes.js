@@ -6,9 +6,11 @@ import { createBottomTabNavigator } from 'react-navigation-tabs';
 
 import Dashboard from './pages/Dashboard';
 import Geo from './pages/Geo';
+
 import Confirm from './pages/New/Confirm';
 import SelectDateTime from './pages/New/SelectDateTime';
 import SelectProvider from './pages/New/SelectProvider';
+
 import Profile from './pages/Profile';
 import SignIn from './pages/SignIn';
 import SignUp from './pages/SingUp';
@@ -55,10 +57,21 @@ export default (signedIn = false) =>
 								),
 							},
 						},
-						Geo,
 						Profile,
+						Geo,
 					},
 
+					{
+						resetOnBlur: true,
+						tabBarOptions: {
+							keyboardHidesTabBar: true,
+							activeTintColor: '#FFF',
+							inactiveTintColor: 'rgba(255, 255, 255, 0.6)',
+							style: {
+								backgroundColor: '#323239',
+							},
+						},
+					},
 					{
 						resetOnBlur: true,
 						tabBarOptions: {

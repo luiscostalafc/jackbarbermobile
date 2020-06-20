@@ -1,9 +1,9 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
   package="com.mobile">
 
-    <uses-permission android:name="android.permission.INTERNET" />
-		<uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
-		<uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+		<uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW"/>
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
 
     <application
       android:name=".MainApplication"
@@ -14,7 +14,7 @@
       android:theme="@style/AppTheme">
 			<meta-data
         android:name="com.google.android.geo.API_KEY"
-        android:value="AIzaSyCehC1yRfumAO8cYDZEQBC98kYFJdXWG_w"/>
+        android:value="AIzaSyDwduhzozHzlYpnRoODlQT7Y6kbqahaA8g"/>
       <activity
 			  android:launchMode="singleTop"
 			  android:theme="@style/SplashTheme"

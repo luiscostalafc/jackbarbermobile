@@ -29,29 +29,13 @@ function* signUp({ payload }) {
 		const {
 			name,
 			email,
-			password,
-			phone,
-			zipcode,
-			street,
-			number,
-			complement,
-			district,
-			city,
-			state,
+			password
 		} = payload;
 
 		yield call(api.post, '/users', {
 			name,
 			email,
 			password,
-			phone,
-			zipcode,
-			street,
-			number,
-			complement,
-			district,
-			city,
-			state,
 		});
 
 		yield put(AuthActions.signUpSuccess());
