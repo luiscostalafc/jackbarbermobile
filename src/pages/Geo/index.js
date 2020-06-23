@@ -110,12 +110,8 @@ function Geo() {
 								latitude: parseFloat(region.latitude),
 								longitude: parseFloat(region.longitude),
 							}}
-							archor={{ x: 0, y: 0 }}
-						>
-							<LocationBox>
-								<LocationText>{location}</LocationText>
-							</LocationBox>
-						</Marker>
+							title="Sua posição atual"
+						/>
 					</>
 				</MapView>
 			)}
@@ -123,7 +119,7 @@ function Geo() {
 	);
 }
 Geo.navigationOptions = {
-	tabBarLabel: 'Express',
+	tabBarLabel: 'Localização',
 	tabBarIcon: ({ tintColor }) => (
 		<Icon name="directions-run" size={20} color={tintColor} />
 	),

@@ -26,7 +26,7 @@ export default (signedIn = false) =>
 
 				App: createBottomTabNavigator(
 					{
-						Dashboard,
+						Geo,
 						New: {
 							screen: createStackNavigator(
 								{
@@ -57,26 +57,15 @@ export default (signedIn = false) =>
 								),
 							},
 						},
+						Dashboard,
 						Profile,
-						Geo,
 					},
 
 					{
 						resetOnBlur: true,
 						tabBarOptions: {
 							keyboardHidesTabBar: true,
-							activeTintColor: '#FFF',
-							inactiveTintColor: 'rgba(255, 255, 255, 0.6)',
-							style: {
-								backgroundColor: '#323239',
-							},
-						},
-					},
-					{
-						resetOnBlur: true,
-						tabBarOptions: {
-							keyboardHidesTabBar: true,
-							activeTintColor: '#FFF',
+							activeTintColor: '#ebb400',
 							inactiveTintColor: 'rgba(255, 255, 255, 0.6)',
 							style: {
 								backgroundColor: '#323239',
