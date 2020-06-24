@@ -1,5 +1,5 @@
 import React, { useRef, useState } from 'react';
-import { Image, ScrollView } from 'react-native';
+import { ScrollView } from 'react-native';
 import { useDispatch, useSelector } from 'react-redux';
 
 import logo from '~/assets/logo.png';
@@ -13,6 +13,7 @@ import {
 	SubmitButton,
 	SignLink,
 	SignLinkText,
+	Image,
 } from './styles';
 
 export default function SignUp({ navigation }) {
@@ -20,15 +21,17 @@ export default function SignUp({ navigation }) {
 
 	const emailRef = useRef();
 	const passwordRef = useRef();
+	const phoneRef = useRef();
 
 	const [name, setName] = useState('');
 	const [email, setEmail] = useState('');
 	const [password, setPassword] = useState('');
+	const [phone, setPhone] = useState('');
 
 	const loading = useSelector(state => state.auth.loading);
 
 	function handleSubmit() {
-		dispatch(signUpRequest(name, email, password));
+		dispatch(signUpRequest(name, email, password, phone));
 	}
 
 	return (
@@ -60,6 +63,16 @@ export default function SignUp({ navigation }) {
 							onSubmitEditing={() => passwordRef.current.focus()}
 							value={email}
 							onChangeText={setEmail}
+						/>
+						<FormInput
+							icon="smartphone"
+							secureTextEntry
+							placeholder="Seu número"
+							ref={phoneRef}
+							returnKeyType="send"
+							onSubmitEditing={handleSubmit}
+							value={phone}
+							onChangeText={setPassword}
 						/>
 						<FormInput
 							icon="lock-outline"

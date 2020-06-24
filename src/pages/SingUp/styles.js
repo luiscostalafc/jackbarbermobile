@@ -12,12 +12,15 @@ export const Container = styled.KeyboardAvoidingView.attrs({
 	flex: 1;
 	justify-content: center;
 	align-items: center;
-	padding: 0 30px;
+	padding: 0px 30px;
 `;
 
 export const Form = styled.View`
 	align-self: stretch;
 	margin-top: 50px;
+`;
+export const Image = styled.Image`
+	margin-top: 100px;
 `;
 
 export const FormInput = styled(Input)`
@@ -25,14 +28,15 @@ export const FormInput = styled(Input)`
 `;
 
 export const SubmitButton = styled(Button)`
-	margin-top: 5px;
+	margin-top: 10px;
 `;
 
 export const SignLink = styled.TouchableOpacity`
-	margin-top: 20px;
+	margin-top: 10px;
 `;
 
 export const SignLinkText = styled.Text`
+	padding= 5px;
 	color: #fff;
 	font-weight: bold;
 	font-size: 16px;
