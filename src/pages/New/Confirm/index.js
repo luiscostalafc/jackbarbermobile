@@ -5,10 +5,10 @@ import Icon from 'react-native-vector-icons/MaterialIcons';
 import { formatRelative, parseISO } from 'date-fns';
 import pt from 'date-fns/locale/pt';
 
-import api from '~/services/api';
-import navigations from '~/services/navigations';
+import api from '../../../services/api';
+import navigations from '../../../services/navigations';
 
-import Background from '~/components/Background';
+import Background from '../../../components/Background';
 
 import { Container, Avatar, Name, Time, SubmitButton } from './styles';
 

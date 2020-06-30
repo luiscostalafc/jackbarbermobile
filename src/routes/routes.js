@@ -4,16 +4,18 @@ import { createAppContainer, createSwitchNavigator } from 'react-navigation';
 import { createStackNavigator } from 'react-navigation-stack';
 import { createBottomTabNavigator } from 'react-navigation-tabs';
 
-import Dashboard from './pages/Dashboard';
-import Geo from './pages/Geo';
+import Dashboard from '../pages/Dashboard';
+import Geo from '../pages/Geo';
 
-import Confirm from './pages/New/Confirm';
-import SelectDateTime from './pages/New/SelectDateTime';
-import SelectProvider from './pages/New/SelectProvider';
+import Confirm from '../pages/New/Confirm';
+import SelectDateTime from '../pages/New/SelectDateTime';
+import SelectProvider from '../pages/New/SelectProvider';
 
-import Profile from './pages/Profile';
-import SignIn from './pages/SignIn';
-import SignUp from './pages/SingUp';
+import Profile from '../pages/Profile';
+import SignIn from '../pages/SignIn';
+import SignUp from '../pages/SingUp';
+
+import Serviços from './app.routes.tsx';
 
 export default (signedIn = false) =>
 	createAppContainer(
@@ -30,6 +32,7 @@ export default (signedIn = false) =>
 						New: {
 							screen: createStackNavigator(
 								{
+									Serviços,
 									SelectProvider,
 									SelectDateTime,
 									Confirm,

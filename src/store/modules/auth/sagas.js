@@ -2,7 +2,7 @@ import { Alert } from 'react-native';
 
 import { all, takeLatest, call, put } from 'redux-saga/effects';
 
-import api from '~/services/api';
+import api from '../../../services/api';
 
 import navigations from '../../../services/navigations';
 import * as AuthActions from './actions';
@@ -26,14 +26,11 @@ function* signIn({ payload }) {
 
 function* signUp({ payload }) {
 	try {
-		const {
-			name,
-			email,
-			password
-		} = payload;
+		const { name, phone, email, password } = payload;
 
 		yield call(api.post, '/users', {
 			name,
+			phone,
 			email,
 			password,
 		});

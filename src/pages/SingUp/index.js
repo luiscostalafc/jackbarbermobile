@@ -2,9 +2,10 @@ import React, { useRef, useState } from 'react';
 import { ScrollView } from 'react-native';
 import { useDispatch, useSelector } from 'react-redux';
 
-import logo from '~/assets/logo.png';
-import Background from '~/components/Background';
-import { signUpRequest } from '~/store/modules/auth/actions';
+import logo from '../../assets/logo.png';
+import Background from '../../components/Background';
+import { signUpRequest } from '../../store/modules/auth/actions';
+import { phoneNumber } from '../../services/mask';
 
 import {
 	Container,
@@ -24,14 +25,14 @@ export default function SignUp({ navigation }) {
 	const phoneRef = useRef();
 
 	const [name, setName] = useState('');
+	const [phone, setPhone] = useState('');
 	const [email, setEmail] = useState('');
 	const [password, setPassword] = useState('');
-	const [phone, setPhone] = useState('');
 
-	const loading = useSelector(state => state.auth.loading);
+	const loading = useSelector((state) => state.auth.loading);
 
 	function handleSubmit() {
-		dispatch(signUpRequest(name, email, password, phone));
+		dispatch(signUpRequest(name, phone, email, password));
 	}
 
 	return (
@@ -47,9 +48,22 @@ export default function SignUp({ navigation }) {
 							autoCapitalize="none"
 							placeholder="Nome completo"
 							returnKeyType="next"
-							onSubmitEditing={() => emailRef.current.focus()}
+							onSubmitEditing={() => phoneRef.current.focus()}
 							value={name}
 							onChangeText={setName}
+						/>
+
+						<FormInput
+							icon="smartphone"
+							keyboardType="number-pad"
+							autoCorrect={false}
+							ref={phoneRef}
+							autoCapitalize="none"
+							placeholder="Seu número com DDD"
+							returnKeyType="next"
+							onSubmitEditing={() => emailRef.current.focus()}
+							value={phoneNumber(phone)}
+							onChangeText={setPhone}
 						/>
 
 						<FormInput
@@ -64,21 +78,13 @@ export default function SignUp({ navigation }) {
 							value={email}
 							onChangeText={setEmail}
 						/>
-						<FormInput
-							icon="smartphone"
-							secureTextEntry
-							placeholder="Seu número"
-							ref={phoneRef}
-							returnKeyType="send"
-							onSubmitEditing={handleSubmit}
-							value={phone}
-							onChangeText={setPassword}
-						/>
+
 						<FormInput
 							icon="lock-outline"
 							secureTextEntry
 							placeholder="Sua senha secreta"
 							ref={passwordRef}
+							yar
 							returnKeyType="send"
 							onSubmitEditing={handleSubmit}
 							value={password}

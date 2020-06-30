@@ -2,9 +2,10 @@ import React, { useRef, useState, useEffect } from 'react';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import { useDispatch, useSelector } from 'react-redux';
 
-import Background from '~/components/Background';
-import { signOut } from '~/store/modules/auth/actions';
-import { updateProfileRequest } from '~/store/modules/user/actions';
+import Background from '../../components/Background';
+import { signOut } from '../../store/modules/auth/actions';
+import { updateProfileRequest } from '../../store/modules/user/actions';
+import { phoneNumber } from '../../services/mask';
 
 import {
 	Container,
@@ -18,14 +19,16 @@ import {
 
 export default function Profile() {
 	const dispatch = useDispatch();
-	const profile = useSelector(state => state.user.profile);
+	const profile = useSelector((state) => state.user.profile);
 
 	const emailRef = useRef();
 	const oldPasswordRef = useRef();
 	const passwordRef = useRef();
 	const confirmPasswordRef = useRef();
+	const phoneRef = useRef();
 
 	const [name, setName] = useState(profile.name);
+	const [phone, setPhone] = useState(profile.phone || '');
 	const [email, setEmail] = useState(profile.email);
 	const [oldPassword, setOldPassword] = useState('');
 	const [password, setPassword] = useState('');
@@ -41,6 +44,7 @@ export default function Profile() {
 		dispatch(
 			updateProfileRequest({
 				name,
+				phone,
 				email,
 				oldPassword,
 				password,
@@ -65,9 +69,21 @@ export default function Profile() {
 						autoCapitalize="none"
 						placeholder="Nome completo"
 						returnKeyType="next"
-						onSubmitEditing={() => emailRef.current.focus()}
+						onSubmitEditing={() => phoneRef.current.focus()}
 						value={name}
 						onChangeText={setName}
+					/>
+
+					<FormInput
+						icon="smartphone"
+						autoCorrect={false}
+						ref={phoneRef}
+						autoCapitalize="none"
+						placeholder="Seu número com DDD"
+						returnKeyType="next"
+						onSubmitEditing={() => emailRef.current.focus()}
+						value={phoneNumber(phone)}
+						onChangeText={setPhone}
 					/>
 
 					<FormInput

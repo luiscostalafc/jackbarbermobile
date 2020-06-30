@@ -29,11 +29,11 @@ class Index extends Component {
 		OneSignal.removeEventListener('ids', this.onIds);
 	}
 
-	onReceived = data => {};
+	onReceived = (data) => {};
 
-	onOpened = notification => {};
+	onOpened = (notification) => {};
 
-	onIds = id => {};
+	onIds = (id) => {};
 
 	render() {
 		return (

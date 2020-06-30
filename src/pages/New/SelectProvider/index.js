@@ -2,9 +2,9 @@ import React, { useEffect, useState } from 'react';
 import { TouchableOpacity } from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 
-import api from '~/services/api';
+import api from '../../../services/api';
 
-import Background from '~/components/Background';
+import Background from '../../../components/Background';
 
 import { Container, Provider, ProvidersList, Avatar, Name } from './styles';
 
@@ -26,7 +26,7 @@ export default function SelectProvider({ navigation }) {
 			<Container>
 				<ProvidersList
 					data={providers}
-					keyExtractor={provider => String(provider.id)}
+					keyExtractor={(provider) => String(provider.id)}
 					renderItem={({ item: provider }) => (
 						<Provider
 							onPress={() =>
