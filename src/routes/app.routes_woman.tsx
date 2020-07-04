@@ -17,7 +17,7 @@ const WomanServices: React.FC = () => (
     screenOptions={{
 			title: "Serviços Femininos",
       headerShown: false,
-      cardStyle: { backgroundColor: '#EBEEF8' },
+      cardStyle: { backgroundColor: '#C4C4C4' },
 		}}
 		//  initialRouteName="DashboardCartWoman"
 
