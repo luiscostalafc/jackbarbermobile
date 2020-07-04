@@ -15,7 +15,9 @@ import Profile from '../pages/Profile';
 import SignIn from '../pages/SignIn';
 import SignUp from '../pages/SingUp';
 
-import Serviços from './app.routes.tsx';
+import Gender from '../pages/New/Confirm/Gender';
+import ManServices from './app.routes_man.tsx';
+import WomanServices from './app.routes_woman.tsx';
 
 export default (signedIn = false) =>
 	createAppContainer(
@@ -32,7 +34,9 @@ export default (signedIn = false) =>
 						New: {
 							screen: createStackNavigator(
 								{
-									Serviços,
+									Gender,
+									ManServices,
+									WomanServices,
 									SelectProvider,
 									SelectDateTime,
 									Confirm,

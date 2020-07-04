@@ -3,31 +3,30 @@ import React from 'react';
 import { TouchableOpacity } from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 
-import Background from '../../../components/Background';
+import Background from '../../../../components/Background';
+
+import navigations from '../../../../services/navigations';
 
 import { Container, AvatarMan, AvatarWoman, SubmitButton } from './styles';
-import navigations from '../../../services/navigations';
 
 export default function Gender() {
 	return (
 		<Background>
 			<Container>
-				<AvatarWoman
-					source={require('../../../assets/images/woman_service.jpeg')}
-				/>
+				<AvatarWoman source={require('../../../../assets/images/woman.jpeg')} />
 				<SubmitButton
 					onPress={() => {
-						navigations.navigate('Dashboard');
+						navigations.navigate('WomanServices');
 					}}
 				>
 					Jack Hair
 				</SubmitButton>
 				<AvatarMan
-					source={require('../../../assets/images/man_service.jpeg')}
+					source={require('../../../../assets/images/servico_man.jpeg')}
 				/>
 				<SubmitButton
 					onPress={() => {
-						navigations.navigate('DashboardCartMan');
+						navigations.navigate('ManServices');
 					}}
 				>
 					Jack Barber

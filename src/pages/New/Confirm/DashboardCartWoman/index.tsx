@@ -23,14 +23,14 @@ import {
 } from './styles';
 
 interface ProductData {
-  id: number;
+  id: string;
   name: string;
   image_url: string;
   price: number;
   gender: number;
 }
 
-const DashboardCart: React.FC = () => {
+const DashboardCartWoman: React.FC = () => {
   const { addToCart } = useCart();
 
   const [products, setProducts] = useState<ProductData[]>([]);
@@ -62,7 +62,7 @@ const DashboardCart: React.FC = () => {
           renderItem={({ item }) => (
             <Product>
               <ProductImage source={{ uri: item.image_url }} />
-              <ProductTitle>{item.title}</ProductTitle>
+              <ProductTitle>{item.name}</ProductTitle>
               <PriceContainer>
                 <ProductPrice>{formatValue(item.price)}</ProductPrice>
                 <ProductButton
@@ -81,6 +81,6 @@ const DashboardCart: React.FC = () => {
   );
 };
 
-export default DashboardCart;
+export default DashboardCartWoman;
 
 

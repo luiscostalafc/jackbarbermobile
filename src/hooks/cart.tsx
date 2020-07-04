@@ -9,7 +9,7 @@ import React, {
 import AsyncStorage from '@react-native-community/async-storage';
 
 interface Product {
-  id: number;
+  id: string;
   name: string;
   image_url: string;
   price: number;
@@ -20,8 +20,8 @@ interface Product {
 interface CartContext {
   products: Product[];
   addToCart(item: Omit<Product, 'quantity'>): void;
-  increment(id: number): void;
-  decrement(id: number): void;
+  increment(id: string): void;
+  decrement(id: string): void;
 }
 
 const CartContext = createContext<CartContext | null>(null);

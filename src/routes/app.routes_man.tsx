@@ -4,20 +4,22 @@ import { createStackNavigator } from '@react-navigation/stack';
 import { Image } from 'react-native';
 
 import FeatherIcon from 'react-native-vector-icons/MaterialIcons';
-
-import DashboardCart from '../pages/New/Confirm/DashboardCart';
+import DashboardCartMan from '../pages/New/Confirm/DashboardCartMan';
 import Cart from '../pages/New/Cart';
 
 
 
 const App = createStackNavigator();
-const Serviços: React.FC = () => (
+
+const ManServices: React.FC = () => (
   <App.Navigator
     screenOptions={{
-      headerShown: true,
+			title: "Serviços Masculinos",
+      headerShown: false,
       cardStyle: { backgroundColor: '#EBEEF8' },
-    }}
-		initialRouteName="DashboardCart"
+		}}
+		// initialRouteName="DashboardCartMan"
+
   >
     <App.Screen
       options={{
@@ -30,8 +32,8 @@ const Serviços: React.FC = () => (
 				headerBackImage: () => <FeatherIcon name="chevron-left" size={24} />
 
       }}
-      name="Serviços"
-      component={DashboardCart}
+      name="DashboardCartMan"
+      component={DashboardCartMan}
     />
     <App.Screen
       options={{
@@ -49,6 +51,6 @@ const Serviços: React.FC = () => (
   </App.Navigator>
 );
 
-export default Serviços;
+export default ManServices;
 
 

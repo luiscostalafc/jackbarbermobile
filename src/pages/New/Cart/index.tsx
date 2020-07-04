@@ -31,7 +31,7 @@ import { useCart } from '../../../hooks/cart';
 import formatValue from '../../../util/formatValue';
 
 interface Product {
-  id: number;
+  id: string;
   name: string;
   image_url: string;
   price: number;
@@ -82,7 +82,7 @@ const Cart: React.FC = () => {
             <Product>
               <ProductImage source={{ uri: item.image_url }} />
               <ProductTitleContainer>
-                <ProductTitle>{item.title}</ProductTitle>
+                <ProductTitle>{item.name}</ProductTitle>
                 <ProductPriceContainer>
                   <ProductSinglePrice>
                     {formatValue(item.price)}
