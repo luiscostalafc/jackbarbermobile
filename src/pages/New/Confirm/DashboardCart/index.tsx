@@ -4,11 +4,11 @@ import FeatherIcon from 'react-native-vector-icons/MaterialIcons';
 
 import { View, TouchableOpacity } from 'react-native';
 
-import formatValue from '../../../util/formatValue';
-import { useCart } from '../../../hooks/cart';
-import api from '../../../services/api';
+import formatValue from '../../../../util/formatValue';
+import { useCart } from '../../../../hooks/cart';
+import api from '../../../../services/api';
 
-import FloatingCart from '../../../components/FloatingCart';
+import FloatingCart from '../../../../components/FloatingCart';
 
 import {
   Container,
@@ -37,7 +37,7 @@ const DashboardCart: React.FC = () => {
 
   useEffect(() => {
     async function loadProducts(): Promise<void> {
-      const response = await api.get('/categories');
+      const response = await api.get('/categories/1');
 
       setProducts(response.data);
     }

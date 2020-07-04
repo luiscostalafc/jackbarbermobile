@@ -5,13 +5,12 @@ import { Image } from 'react-native';
 
 import FeatherIcon from 'react-native-vector-icons/MaterialIcons';
 
-import DashboardCart from '../pages/New/DashboardCart';
+import DashboardCart from '../pages/New/Confirm/DashboardCart';
 import Cart from '../pages/New/Cart';
-import { nominalTypeHack } from 'prop-types';
+
 
 
 const App = createStackNavigator();
-
 const Serviços: React.FC = () => (
   <App.Navigator
     screenOptions={{
