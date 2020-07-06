@@ -38,12 +38,12 @@ const DashboardCartMan: React.FC = () => {
   useEffect(() => {
     async function loadProducts(): Promise<void> {
       const response = await api.get('/categories/2');
+			setProducts(response.data);
 
-      setProducts(response.data);
     }
 
     loadProducts();
-  }, []);
+	}, []);
 
   function handleAddToCart(item: ProductData): void {
     addToCart(item);

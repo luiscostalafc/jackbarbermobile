@@ -109,8 +109,15 @@ export const TotalProductsText = styled.Text`
   font-weight: bold;
 `;
 
+export const ConfirmButton = styled.TouchableOpacity`
+  border-radius: 5px;
+  padding: 0px;
+	margin-bottom: 0px;
+`;
+
 export const SubtotalValue = styled.Text`
   font-size: 16px;
   color: #fff;
-  font-weight: bold;
+	font-weight: bold;
+	margin-left: 70px;
 `;

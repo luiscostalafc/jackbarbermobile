@@ -1,6 +1,7 @@
 import React, { useMemo } from 'react';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
+import navigations from '../../../services/navigations';
 import 'intl';
 import 'intl/locale-data/jsonp/pt-BR';
 
@@ -22,7 +23,8 @@ import {
   ActionContainer,
   ActionButton,
   TotalProductsContainer,
-  TotalProductsText,
+	TotalProductsText,
+	ConfirmButton,
   SubtotalValue,
 } from './styles';
 
@@ -40,6 +42,8 @@ interface Product {
 }
 
 const Cart: React.FC = () => {
+
+
   const { increment, decrement, products } = useCart();
 
   function handleIncrement(id: string): void {
@@ -118,6 +122,11 @@ const Cart: React.FC = () => {
       <TotalProductsContainer>
         <MaterialIcons name="shopping-cart" color="#fff" size={24} />
         <TotalProductsText>{`${totalItensInCart} itens`}</TotalProductsText>
+				<ConfirmButton onPress={() => {
+						navigations.navigate('Dashboard');
+					}}>
+						<MaterialCommunityIcons name="check-bold" color="#fff" size={30} />
+					</ConfirmButton>
         <SubtotalValue>{cartTotal}</SubtotalValue>
       </TotalProductsContainer>
     </Container>

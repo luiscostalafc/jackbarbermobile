@@ -1,7 +1,7 @@
 import React from 'react';
 import { createStackNavigator } from '@react-navigation/stack';
 
-import { Image } from 'react-native';
+//import { Image } from 'react-native';
 
 import FeatherIcon from 'react-native-vector-icons/MaterialIcons';
 import DashboardCartMan from '../pages/New/Confirm/DashboardCartMan';
