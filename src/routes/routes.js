@@ -10,6 +10,7 @@ import Geo from '../pages/Geo';
 import Confirm from '../pages/New/Confirm';
 import SelectDateTime from '../pages/New/SelectDateTime';
 import SelectProvider from '../pages/New/SelectProvider';
+import SelectProviderMan from '../pages/New/SelectProviderMan';
 
 import Profile from '../pages/Profile';
 import SignIn from '../pages/SignIn';
@@ -38,6 +39,7 @@ export default (signedIn = false) =>
 									ManServices,
 									WomanServices,
 									SelectProvider,
+									SelectProviderMan,
 									SelectDateTime,
 									Confirm,
 								},

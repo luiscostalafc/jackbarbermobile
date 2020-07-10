@@ -8,12 +8,12 @@ import Background from '../../../components/Background';
 
 import { Container, Provider, ProvidersList, Avatar, Name } from './styles';
 
-export default function SelectProvider({ navigation }) {
+export default function SelectProviderMan({ navigation }) {
 	const [providers, setProviders] = useState([]);
 
 	useEffect(() => {
 		async function loadProviders() {
-			const response = await api.get('/providers/woman');
+			const response = await api.get('/providers/man');
 			setProviders(response.data);
 		}
 		loadProviders();
@@ -47,7 +47,7 @@ export default function SelectProvider({ navigation }) {
 	);
 }
 
-SelectProvider.navigationOptions = ({ navigation }) => ({
+SelectProviderMan.navigationOptions = ({ navigation }) => ({
 	title: 'Selecione o prestador',
 	headerLeft: () => (
 		<TouchableOpacity

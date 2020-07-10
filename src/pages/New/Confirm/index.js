@@ -4,6 +4,9 @@ import Icon from 'react-native-vector-icons/MaterialIcons';
 
 import { formatRelative, parseISO } from 'date-fns';
 import pt from 'date-fns/locale/pt';
+import 'intl';
+import 'intl/locale-data/jsonp/pt-BR';
+import formatValue from '../../../util/formatValue.ts';
 
 import api from '../../../services/api';
 import navigations from '../../../services/navigations';
@@ -11,10 +14,30 @@ import navigations from '../../../services/navigations';
 import Background from '../../../components/Background';
 
 import { Container, Avatar, Name, Time, SubmitButton } from './styles';
+import { useCart } from '../../../hooks/cart.tsx';
 
 export default function Confirm({ navigation }) {
 	const provider = navigation.getParam('provider');
 	const time = navigation.getParam('time');
+	const { products } = useCart();
+
+	const cartTotal = useMemo(() => {
+		const total = products.reduce(
+			(totalValue, { price, quantity }) => totalValue + price * quantity,
+			0
+		);
+
+		return formatValue(total);
+	}, [products]);
+
+	const totalItensInCart = useMemo(() => {
+		const total = products.reduce(
+			(totalQuantity, { quantity }) => totalQuantity + quantity,
+			0
+		);
+
+		return total;
+	}, [products]);
 
 	const dateFormatted = useMemo(
 		() => formatRelative(parseISO(time), new Date(), { locale: pt }),
@@ -27,6 +50,12 @@ export default function Confirm({ navigation }) {
 			{
 				provider_id: provider.id,
 				date: time,
+				id: products.id,
+				description: products.name,
+				title: products.title,
+				quantity: totalItensInCart,
+				currency_id: 'BRL',
+				unit_price: cartTotal,
 			},
 			navigations.navigate('Dashboard')
 		);

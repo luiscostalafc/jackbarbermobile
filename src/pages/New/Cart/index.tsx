@@ -41,7 +41,7 @@ interface Product {
   quantity: number;
 }
 
-const Cart: React.FC = () => {
+const Cart: React.FC = (item) => {
 
 
   const { increment, decrement, products } = useCart();
@@ -123,7 +123,7 @@ const Cart: React.FC = () => {
         <MaterialIcons name="shopping-cart" color="#fff" size={24} />
         <TotalProductsText>{`${totalItensInCart} itens`}</TotalProductsText>
 				<ConfirmButton onPress={() => {
-						navigations.navigate('Dashboard');
+						navigations.navigate('SelectProvider');
 					}}>
 						<MaterialCommunityIcons name="check-bold" color="#fff" size={30} />
 					</ConfirmButton>
