@@ -1,4 +1,4 @@
-import React, { useMemo } from 'react';
+import React, { useMemo, useEffect, useState } from 'react';
 import { TouchableOpacity } from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 
@@ -16,10 +16,25 @@ import Background from '../../../components/Background';
 import { Container, Avatar, Name, Time, SubmitButton } from './styles';
 import { useCart } from '../../../hooks/cart.tsx';
 
+interface Product {
+	id: string;
+	name: string;
+	image_url: string;
+	price: number;
+	gender: number;
+	quantity: number;
+}
+
 export default function Confirm({ navigation }) {
 	const provider = navigation.getParam('provider');
 	const time = navigation.getParam('time');
+
 	const { products } = useCart();
+
+	const dateFormatted = useMemo(
+		() => formatRelative(parseISO(time), new Date(), { locale: pt }),
+		[time]
+	);
 
 	const cartTotal = useMemo(() => {
 		const total = products.reduce(
@@ -39,23 +54,22 @@ export default function Confirm({ navigation }) {
 		return total;
 	}, [products]);
 
-	const dateFormatted = useMemo(
-		() => formatRelative(parseISO(time), new Date(), { locale: pt }),
-		[time]
-	);
-
 	async function handleAddAppointment() {
 		await api.post(
 			'appointments',
 			{
+				item: [
+					{
+						id: products.id,
+						description: products.name,
+						title: products.name,
+						quantity: totalItensInCart,
+						currency_id: 'BRL',
+						unit_price: cartTotal,
+					},
+				],
 				provider_id: provider.id,
 				date: time,
-				id: products.id,
-				description: products.name,
-				title: products.title,
-				quantity: totalItensInCart,
-				currency_id: 'BRL',
-				unit_price: cartTotal,
 			},
 			navigations.navigate('Dashboard')
 		);

@@ -119,5 +119,5 @@ export const SubtotalValue = styled.Text`
   font-size: 16px;
   color: #fff;
 	font-weight: bold;
-	margin-left: 70px;
+	margin-left: 50px;
 `;

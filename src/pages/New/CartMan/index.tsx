@@ -41,7 +41,7 @@ interface Product {
   quantity: number;
 }
 
-const Cart: React.FC = (item) => {
+const CartMan: React.FC = (item) => {
 
 
   const { increment, decrement, products } = useCart();
@@ -133,4 +133,4 @@ const Cart: React.FC = (item) => {
   );
 };
 
-export default Cart;
+export default CartMan;
