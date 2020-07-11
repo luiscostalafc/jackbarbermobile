@@ -5,7 +5,7 @@ import { createStackNavigator } from '@react-navigation/stack';
 
 import FeatherIcon from 'react-native-vector-icons/MaterialIcons';
 import DashboardCartMan from '../pages/New/Confirm/DashboardCartMan';
-import Cart from '../pages/New/Cart';
+import CartMen from '../pages/New/CartMan';
 
 
 
@@ -46,7 +46,7 @@ const ManServices: React.FC = () => (
         headerBackImage: () => <FeatherIcon name="chevron-left" size={24} />,
       }}
       name="Cart"
-      component={Cart}
+      component={CartMen}
     />
   </App.Navigator>
 );
