@@ -64,15 +64,38 @@ export default function SignIn({ navigation }) {
 				</Form>
 
 				<SignLink onPress={() => navigation.navigate('SignUp')}>
-					<SignLinkText>Criar conta gratuita</SignLinkText>
+					<SignLinkText
+						style={{ justifyContent: 'center', alignItems: 'center' }}
+					>
+						Criar conta gratuita
+					</SignLinkText>
 
 					<View style={{ height: 20 }} />
 
 					<SignLinkText
-						style={{ color: '#EEDD82' }}
+						style={{
+							color: '#EEDD82',
+							justifyContent: 'center',
+							alignItems: 'center',
+						}}
 						onPress={() => Linking.openURL('https://salaojack.com/')}
 					>
 						Visite nosso site!
+					</SignLinkText>
+
+					<View style={{ height: 20 }} />
+
+					<SignLinkText
+						style={{
+							color: '#EEDD82',
+							justifyContent: 'center',
+							alignItems: 'center',
+						}}
+						onPress={() =>
+							Linking.openURL('https://www.jackhair-barber.com.br/')
+						}
+					>
+						Sou prestador
 					</SignLinkText>
 				</SignLink>
 			</Container>
