@@ -123,7 +123,7 @@ const CartMan: React.FC = (item) => {
         <MaterialIcons name="shopping-cart" color="#fff" size={24} />
         <TotalProductsText>{`${totalItensInCart} itens`}</TotalProductsText>
 				<ConfirmButton onPress={() => {
-						navigations.navigate('SelectProviderMen');
+						navigations.navigate('SelectProviderMan');
 					}}>
 						<MaterialCommunityIcons name="check-bold" color="#fff" size={30} />
 					</ConfirmButton>
