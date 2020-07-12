@@ -94,9 +94,7 @@ export default function Confirm({ navigation }) {
 
 				<Time>{dateFormatted}</Time>
 
-				<SubmitButton onPress={handleAddAppointment}>
-					Confirmar agendamento
-				</SubmitButton>
+				<SubmitButton onPress={handleAddAppointment}>Confirmar</SubmitButton>
 			</Container>
 		</Background>
 	);
