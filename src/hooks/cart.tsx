@@ -52,7 +52,9 @@ const CartProvider: React.FC = ({ children }) => {
     }
 
     saveProducts();
-  }, [products]);
+	}, [products]);
+
+
 
   const addToCart = useCallback(async product => {
     setProducts(state => {
@@ -74,7 +76,9 @@ const CartProvider: React.FC = ({ children }) => {
 
       return newProducts;
     });
-  }, []);
+	}, []);
+
+
 
   const increment = useCallback(
     async id => {

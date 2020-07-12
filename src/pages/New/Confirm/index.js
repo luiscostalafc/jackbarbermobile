@@ -1,4 +1,4 @@
-import React, { useMemo, useEffect, useState } from 'react';
+import React, { useMemo } from 'react';
 import { TouchableOpacity } from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 
@@ -6,7 +6,6 @@ import { formatRelative, parseISO } from 'date-fns';
 import pt from 'date-fns/locale/pt';
 import 'intl';
 import 'intl/locale-data/jsonp/pt-BR';
-import formatValue from '../../../util/formatValue.ts';
 
 import api from '../../../services/api';
 import navigations from '../../../services/navigations';
@@ -15,15 +14,6 @@ import Background from '../../../components/Background';
 
 import { Container, Avatar, Name, Time, SubmitButton } from './styles';
 import { useCart } from '../../../hooks/cart.tsx';
-
-interface Product {
-	id: string;
-	name: string;
-	image_url: string;
-	price: number;
-	gender: number;
-	quantity: number;
-}
 
 export default function Confirm({ navigation }) {
 	const provider = navigation.getParam('provider');
@@ -42,7 +32,7 @@ export default function Confirm({ navigation }) {
 			0
 		);
 
-		return formatValue(total);
+		return total;
 	}, [products]);
 
 	const totalItensInCart = useMemo(() => {
@@ -54,20 +44,34 @@ export default function Confirm({ navigation }) {
 		return total;
 	}, [products]);
 
+	const cartId = useMemo(() => {
+		const total = products.reduce((totalId, { id }) => totalId + id, 0);
+		return total;
+	}, [products]);
+
+	const cartName = useMemo(() => {
+		const total = products.reduce(
+			(totalName, { name }) => totalName + name,
+			'='
+		);
+		return total;
+	}, [products]);
+
 	async function handleAddAppointment() {
 		await api.post(
 			'appointments',
 			{
-				item: [
+				items: [
 					{
-						id: products.id,
-						description: products.name,
-						title: products.name,
+						id: cartId,
+						description: cartName,
+						title: cartName,
 						quantity: totalItensInCart,
 						currency_id: 'BRL',
 						unit_price: cartTotal,
 					},
 				],
+
 				provider_id: provider.id,
 				date: time,
 			},

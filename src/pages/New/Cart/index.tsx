@@ -41,7 +41,7 @@ interface Product {
   quantity: number;
 }
 
-const Cart: React.FC = (item) => {
+const Cart: React.FC = () => {
 
 
   const { increment, decrement, products } = useCart();
