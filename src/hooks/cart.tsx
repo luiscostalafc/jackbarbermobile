@@ -110,7 +110,7 @@ const CartProvider: React.FC = ({ children }) => {
       return state.map(productState =>
         productState.id === id
           ? { ...productState, quantity: productState.quantity - 1 }
-          : productState,
+          : productState
       );
     });
   }, []);

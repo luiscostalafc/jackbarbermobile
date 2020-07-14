@@ -5,7 +5,8 @@ import navigations from '../../../services/navigations';
 import 'intl';
 import 'intl/locale-data/jsonp/pt-BR';
 
-import { View } from 'react-native';
+import { View} from 'react-native';
+
 
 import {
   Container,
@@ -41,7 +42,7 @@ interface Product {
   quantity: number;
 }
 
-const Cart: React.FC = () => {
+const Cart: React.FC = ( ) => {
 
 
   const { increment, decrement, products } = useCart();
@@ -134,3 +135,5 @@ const Cart: React.FC = () => {
 };
 
 export default Cart;
+
+
