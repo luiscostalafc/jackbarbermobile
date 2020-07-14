@@ -70,32 +70,32 @@ export default function SignIn({ navigation }) {
 						Criar conta gratuita
 					</SignLinkText>
 
-					<View style={{ height: 20 }} />
+					<View style={{ height: 15 }} />
 
 					<SignLinkText
 						style={{
-							color: '#EEDD82',
-							justifyContent: 'center',
-							alignItems: 'center',
-						}}
-						onPress={() => Linking.openURL('https://salaojack.com/')}
-					>
-						Visite nosso site!
-					</SignLinkText>
-
-					<View style={{ height: 20 }} />
-
-					<SignLinkText
-						style={{
-							color: '#EEDD82',
 							justifyContent: 'center',
 							alignItems: 'center',
 						}}
 						onPress={() =>
-							Linking.openURL('https://www.jackhair-barber.com.br/')
+							Linking.openURL('https://nifty-jennings-1795d9.netlify.app/')
 						}
 					>
-						Sou prestador
+						Administração
+					</SignLinkText>
+
+					<View style={{ height: 30 }} />
+
+					<SignLinkText
+						style={{
+							color: '#EEDD82',
+							justifyContent: 'center',
+							alignItems: 'center',
+							fontSize: 18,
+						}}
+						onPress={() => Linking.openURL('https://salaojack.com/')}
+					>
+						Visite nosso site!
 					</SignLinkText>
 				</SignLink>
 			</Container>

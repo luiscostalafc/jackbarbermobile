@@ -1,5 +1,12 @@
 import React, { useState, useEffect } from 'react';
-import { View, ActivityIndicator, StyleSheet, Platform } from 'react-native';
+import { useSelector } from 'react-redux';
+import {
+	View,
+	ActivityIndicator,
+	StyleSheet,
+	Platform,
+	Alert,
+} from 'react-native';
 
 import { PERMISSIONS, request } from 'react-native-permissions';
 import Geolocation from '@react-native-community/geolocation';
@@ -11,7 +18,7 @@ import Icon from 'react-native-vector-icons/MaterialIcons';
 import markerImage from '../../assets/logo1.png';
 import api from '../../services/api';
 
-import { LocationText, LocationBox } from './styles';
+import { SubmitButton, Form, FormInput } from './styles';
 
 Geocoder.init('AIzaSyCehC1yRfumAO8cYDZEQBC98kYFJdXWG_w');
 
@@ -19,6 +26,7 @@ function Geo() {
 	const [loading, setLoading] = useState(true);
 	const [points, setPoints] = useState([]);
 	const [location, setLocation] = useState([]);
+	const [show, setShow] = useState(false);
 
 	const [region, setRegion] = useState({
 		latitude: 0,
@@ -27,6 +35,7 @@ function Geo() {
 		longitudeDelta: 0.0134,
 		location: null,
 	});
+	const user = useSelector((state) => state.user.profile);
 
 	request(
 		Platform.select({
@@ -50,7 +59,7 @@ function Geo() {
 				setLoading(false);
 				setLocation(shortAddress);
 			},
-			error => {
+			(error) => {
 				console.log(error);
 			},
 			{ enableHighAccuracy: true, maximumAge: 10000, timeout: 1000 }
@@ -74,7 +83,7 @@ function Geo() {
 	}, [region]);
 
 	function renderPoints() {
-		return points.map(point => (
+		return points.map((point) => (
 			<Marker
 				image={markerImage}
 				key={point.id}
@@ -85,6 +94,14 @@ function Geo() {
 				title={point.name}
 			/>
 		));
+	}
+
+	async function handleAddAddress() {
+		await api.post('addresses', {
+			user_id: user.id,
+			street: location,
+		});
+		setShow(true);
 	}
 
 	return (
@@ -114,6 +131,24 @@ function Geo() {
 						/>
 					</>
 				</MapView>
+			)}
+
+			{show ? (
+				<View />
+			) : (
+				<>
+					<Form>
+						<FormInput
+							autoCorrect={false}
+							autoCapitalize="none"
+							value={location}
+							onChangeText={setLocation}
+						/>
+						<SubmitButton onPress={handleAddAddress}>
+							Confirme seu endereço
+						</SubmitButton>
+					</Form>
+				</>
 			)}
 		</View>
 	);
