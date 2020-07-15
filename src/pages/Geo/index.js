@@ -1,19 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import { useSelector } from 'react-redux';
-import {
-	View,
-	ActivityIndicator,
-	StyleSheet,
-	Platform,
-	Alert,
-} from 'react-native';
+import { View, ActivityIndicator, StyleSheet } from 'react-native';
 
 import { PERMISSIONS, request } from 'react-native-permissions';
-import Geolocation from '@react-native-community/geolocation';
+import Geolocation from 'react-native-geolocation-service';
 import MapView, { Marker } from 'react-native-maps';
 // @react-native-community/geolocation
 import Geocoder from 'react-native-geocoding';
-import Icon from 'react-native-vector-icons/MaterialIcons';
 
 import markerImage from '../../assets/logo1.png';
 import api from '../../services/api';
@@ -37,14 +30,9 @@ function Geo() {
 	});
 	const user = useSelector((state) => state.user.profile);
 
-	request(
-		Platform.select({
-			android: PERMISSIONS.ANDROID.ACESS_FINE_LOCATION,
-			ios: PERMISSIONS.IOS.LOCATION_WHEN_IN_USE,
-		})
-	);
-
 	useEffect(() => {
+		request(PERMISSIONS.ANDROID.ACCESS_FINE_LOCATION).then((result) => {});
+
 		Geolocation.getCurrentPosition(
 			async ({ coords: { latitude, longitude } }) => {
 				const response = await Geocoder.from({ latitude, longitude });
@@ -64,7 +52,7 @@ function Geo() {
 			},
 			{ enableHighAccuracy: true, maximumAge: 10000, timeout: 1000 }
 		);
-	}, []);
+	}, [region]);
 
 	useEffect(() => {
 		async function getData() {
@@ -153,12 +141,6 @@ function Geo() {
 		</View>
 	);
 }
-Geo.navigationOptions = {
-	tabBarLabel: 'Localização',
-	tabBarIcon: ({ tintColor }) => (
-		<Icon name="directions-run" size={20} color={tintColor} />
-	),
-};
 
 export default Geo;
 
