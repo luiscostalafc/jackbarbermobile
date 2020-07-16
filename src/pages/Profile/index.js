@@ -44,8 +44,8 @@ export default function Profile() {
 		dispatch(
 			updateProfileRequest({
 				name,
-				phone,
 				email,
+				phone,
 				oldPassword,
 				password,
 				confirmPassword,

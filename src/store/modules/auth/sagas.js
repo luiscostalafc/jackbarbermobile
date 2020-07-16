@@ -26,12 +26,12 @@ function* signIn({ payload }) {
 
 function* signUp({ payload }) {
 	try {
-		const { name, phone, email, password } = payload;
+		const { name, email, phone, password } = payload;
 
 		yield call(api.post, '/users', {
 			name,
-			phone,
 			email,
+			phone,
 			password,
 		});
 

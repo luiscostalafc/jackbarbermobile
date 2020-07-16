@@ -21,7 +21,7 @@ export default function SelectDateTime({ navigation }) {
 			const response = await api.get('/providers/available', {
 				params: {
 					providerId: provider.id,
-					date,
+					date: date.getTime(),
 				},
 			});
 

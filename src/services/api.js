@@ -1,7 +1,9 @@
 import axios from 'axios';
 
 const api = axios.create({
-	baseURL: 'https://jackhair-barber.com.br/',
+	baseURL: 'http://192.168.0.3:3333',
 });
 
 export default api;
+
+// https://jackhair-barber.com.br/
