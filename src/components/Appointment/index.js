@@ -2,8 +2,6 @@ import React, { useMemo } from 'react';
 import { TouchableOpacity } from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 
-import PropTypes from 'prop-types';
-
 import { parseISO, formatRelative } from 'date-fns';
 import pt from 'date-fns/locale/pt';
 
@@ -41,19 +39,3 @@ export default function Appointment({ data, onCancel }) {
 		</Container>
 	);
 }
-
-Appointment.propTypes = {
-	data: PropTypes.shape({
-		provider: PropTypes.shape({
-			avatar: PropTypes.shape({
-				url: PropTypes.string.isRequired,
-			}),
-			name: PropTypes.string.isRequired,
-		}),
-		date: PropTypes.string.isRequired,
-		past: PropTypes.bool.isRequired,
-		cancelable: PropTypes.bool.isRequired,
-		canceled_at: PropTypes.string,
-	}).isRequired,
-	onCancel: PropTypes.func.isRequired,
-};

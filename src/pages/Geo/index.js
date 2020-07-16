@@ -5,8 +5,10 @@ import { View, ActivityIndicator, StyleSheet } from 'react-native';
 import { PERMISSIONS, request } from 'react-native-permissions';
 import Geolocation from 'react-native-geolocation-service';
 import MapView, { Marker } from 'react-native-maps';
+import Icon from 'react-native-vector-icons/MaterialIcons';
 // @react-native-community/geolocation
 import Geocoder from 'react-native-geocoding';
+// import { GooglePlacesAutocomplete } from 'react-native-google-places-autocomplete';
 
 import markerImage from '../../assets/logo1.png';
 import api from '../../services/api';
@@ -20,6 +22,7 @@ function Geo() {
 	const [points, setPoints] = useState([]);
 	const [location, setLocation] = useState([]);
 	const [show, setShow] = useState(false);
+	const [permission, setPermission] = useState(null);
 
 	const [region, setRegion] = useState({
 		latitude: 0,
@@ -28,11 +31,19 @@ function Geo() {
 		longitudeDelta: 0.0134,
 		location: null,
 	});
+
 	const user = useSelector((state) => state.user.profile);
 
 	useEffect(() => {
-		request(PERMISSIONS.ANDROID.ACCESS_FINE_LOCATION).then((result) => {});
+		const permissions = request(PERMISSIONS.ANDROID.ACCESS_FINE_LOCATION).then(
+			(result) => {
+				console.log(result);
+			}
+		);
+		setPermission(permissions);
+	}, []);
 
+	useEffect(() => {
 		Geolocation.getCurrentPosition(
 			async ({ coords: { latitude, longitude } }) => {
 				const response = await Geocoder.from({ latitude, longitude });
@@ -50,9 +61,9 @@ function Geo() {
 			(error) => {
 				console.log(error);
 			},
-			{ enableHighAccuracy: true, maximumAge: 10000, timeout: 1000 }
+			{ enableHighAccuracy: true, maximumAge: 10000, timeout: 10000 }
 		);
-	}, [region]);
+	}, [permission]);
 
 	useEffect(() => {
 		async function getData() {
@@ -68,7 +79,7 @@ function Geo() {
 		}
 
 		if (region) getData();
-	}, [region]);
+	}, []);
 
 	function renderPoints() {
 		return points.map((point) => (
@@ -143,6 +154,13 @@ function Geo() {
 }
 
 export default Geo;
+
+Geo.navigationOptions = {
+	tabBarLabel: 'Localização',
+	tabBarIcon: ({ tintColor }) => (
+		<Icon name="directions-run" size={20} color={tintColor} />
+	),
+};
 
 const styles = StyleSheet.create({
 	container: {
