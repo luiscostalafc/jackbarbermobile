@@ -6,7 +6,7 @@
 .node_modules
 #
 # Xcode
-#
+##
 build/
 *.pbxuser
 !default.pbxuser

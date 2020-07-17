@@ -19,15 +19,14 @@ export const Provider = styled(RectButton)`
 	border-radius: 4px;
 	padding: 20px;
 	flex: 1;
-
 	align-items: center;
 	margin: 0 10px 20px;
 `;
 
 export const Avatar = styled.Image`
-	width: 50px;
-	height: 50px;
-	border-radius: 25px;
+	width: 100px;
+	height: 100px;
+	border-radius: 50px;
 `;
 
 export const Name = styled.Text`
