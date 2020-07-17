@@ -36,7 +36,7 @@ import formatValue from '../../../util/formatValue';
 interface Product {
   id: string;
   name: string;
-  image_url: string;
+  avatar_id: number;
   price: number;
   gender: number;
   quantity: number;
@@ -85,7 +85,7 @@ const Cart: React.FC = ( ) => {
           }}
           renderItem={({ item }: { item: Product }) => (
             <Product>
-              <ProductImage source={{ uri: item.image_url }} />
+              <ProductImage source={{ uri: item.avatar.path }} />
               <ProductTitleContainer>
                 <ProductTitle>{item.name}</ProductTitle>
                 <ProductPriceContainer>

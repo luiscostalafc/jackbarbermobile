@@ -25,7 +25,7 @@ import {
 interface ProductData {
   id: string;
   name: string;
-  image_url: string;
+  avatar_id: number;
   price: number;
   gender: number;
 }
@@ -61,7 +61,7 @@ const DashboardCartMan: React.FC = () => {
           }}
           renderItem={({ item }) => (
             <Product>
-              <ProductImage source={{ uri: item.image_url }} />
+              <ProductImage source={{ uri: item.avatar.path }} />
               <ProductTitle>{item.name}</ProductTitle>
               <PriceContainer>
                 <ProductPrice>{formatValue(item.price)}</ProductPrice>
