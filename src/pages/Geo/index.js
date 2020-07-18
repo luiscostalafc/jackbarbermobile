@@ -1,12 +1,15 @@
 import React, { useState, useEffect } from 'react';
 import { useSelector } from 'react-redux';
-import { View, ActivityIndicator, StyleSheet } from 'react-native';
+import { View, ActivityIndicator, StyleSheet, Alert } from 'react-native';
 
-import { PERMISSIONS, request } from 'react-native-permissions';
+import {
+	PERMISSIONS,
+	request,
+	checkNotifications,
+} from 'react-native-permissions';
 import Geolocation from 'react-native-geolocation-service';
 import MapView, { Marker } from 'react-native-maps';
 import Icon from 'react-native-vector-icons/MaterialIcons';
-// @react-native-community/geolocation
 import Geocoder from 'react-native-geocoding';
 // import { GooglePlacesAutocomplete } from 'react-native-google-places-autocomplete';
 
@@ -37,11 +40,20 @@ function Geo() {
 	useEffect(() => {
 		const permissions = request(PERMISSIONS.ANDROID.ACCESS_FINE_LOCATION).then(
 			(result) => {
-				console.log(result);
+				if (result === 'denied') {
+					checkNotifications().then(({ status, settings }) => {
+						if (status === 'denied') {
+							Alert.alert(
+								'Atenção',
+								'Você precisa liberar a localização do dispositivo, dependendo do aparelho é necessário renicializar'
+							);
+						}
+					});
+				}
 			}
 		);
 		setPermission(permissions);
-	}, []);
+	}, [loading]);
 
 	useEffect(() => {
 		Geolocation.getCurrentPosition(

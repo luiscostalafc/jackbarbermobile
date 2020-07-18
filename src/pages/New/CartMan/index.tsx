@@ -5,7 +5,7 @@ import navigations from '../../../services/navigations';
 import 'intl';
 import 'intl/locale-data/jsonp/pt-BR';
 
-import { View } from 'react-native';
+import { View, Alert } from 'react-native';
 
 import {
   Container,
@@ -123,7 +123,7 @@ const CartMan: React.FC = (item) => {
         <MaterialIcons name="shopping-cart" color="#fff" size={24} />
         <TotalProductsText>{`${totalItensInCart} itens`}</TotalProductsText>
 				<ConfirmButton onPress={() => {
-						navigations.navigate('SelectProviderMan');
+						navigations.navigate('SelectProviderMan', Alert.alert('💸Pagamento💸',' Para o seu conforto, nós levamos a maquininha até você 😊'));
 					}}>
 						<MaterialCommunityIcons name="check-bold" color="#fff" size={30} />
 					</ConfirmButton>

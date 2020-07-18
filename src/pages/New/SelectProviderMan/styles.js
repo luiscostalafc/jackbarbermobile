@@ -26,7 +26,7 @@ export const Provider = styled(RectButton)`
 export const Avatar = styled.Image`
 	width: 100px;
 	height: 100px;
-	border-radius: 50px;
+	border-radius: 40px;
 `;
 
 export const Name = styled.Text`
