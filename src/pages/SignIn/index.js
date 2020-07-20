@@ -82,11 +82,11 @@ export default function SignIn({ navigation }) {
 					<SubmitButton loading={loading} onPress={handleSubmit}>
 						Acessar
 					</SubmitButton>
-
-					<ForgotPassword onPress={() => navigation.navigate('ForgotPassword')}>
-						<ForgotPasswordText>Esqueci minha senha</ForgotPasswordText>
-					</ForgotPassword>
 				</Form>
+
+				<ForgotPassword onPress={() => navigation.navigate('ForgotPassword')}>
+					<ForgotPasswordText>Esqueci minha senha</ForgotPasswordText>
+				</ForgotPassword>
 
 				<SignLink onPress={() => navigation.navigate('SignUp')}>
 					<SignLinkText
@@ -98,9 +98,11 @@ export default function SignIn({ navigation }) {
 					>
 						Criar conta gratuita
 					</SignLinkText>
+				</SignLink>
 
-					<View style={{ height: 12 }} />
+				<View style={{ height: 12 }} />
 
+				<SignLink>
 					<SignLinkText
 						style={{
 							justifyContent: 'center',
@@ -112,9 +114,11 @@ export default function SignIn({ navigation }) {
 					>
 						Administração
 					</SignLinkText>
+				</SignLink>
 
-					<View style={{ height: 15 }} />
+				<View style={{ height: 15 }} />
 
+				<SignLink>
 					<SignLinkText
 						style={{
 							color: '#EEDD82',
