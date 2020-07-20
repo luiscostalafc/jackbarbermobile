@@ -65,7 +65,7 @@ export default function Confirm({ navigation }) {
 					{
 						id: cartId,
 						description: cartName,
-						title: cartName,
+						title: cartName.split(' '),
 						quantity: totalItensInCart,
 						currency_id: 'BRL',
 						unit_price: cartTotal,

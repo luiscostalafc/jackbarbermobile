@@ -15,6 +15,7 @@ import SelectProviderMan from '../pages/New/SelectProviderMan';
 import Profile from '../pages/Profile';
 import SignIn from '../pages/SignIn';
 import SignUp from '../pages/SingUp';
+import ForgotPassword from '../pages/ForgotPassword';
 
 import Gender from '../pages/New/Confirm/Gender';
 import ManServices from './app.routes_man.tsx';
@@ -27,6 +28,7 @@ export default (signedIn = false) =>
 				Sign: createSwitchNavigator({
 					SignIn,
 					SignUp,
+					ForgotPassword,
 				}),
 
 				App: createBottomTabNavigator(

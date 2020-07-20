@@ -1,9 +1,14 @@
-import React, { useRef, useState } from 'react';
+import React, { useRef, useState, useEffect } from 'react';
 import { Image, View, Linking } from 'react-native';
 import { useDispatch, useSelector } from 'react-redux';
 
 import PropTypes from 'prop-types';
 
+import {
+	PERMISSIONS,
+	request,
+	checkNotifications,
+} from 'react-native-permissions';
 import logo from '../../assets/logo.png';
 import Background from '../../components/Background';
 import { signInRequest } from '../../store/modules/auth/actions';
@@ -15,6 +20,8 @@ import {
 	SubmitButton,
 	SignLink,
 	SignLinkText,
+	ForgotPassword,
+	ForgotPasswordText,
 } from './styles';
 
 export default function SignIn({ navigation }) {
@@ -23,12 +30,26 @@ export default function SignIn({ navigation }) {
 
 	const [email, setEmail] = useState('');
 	const [password, setPassword] = useState('');
+	const [permission, setPermission] = useState('');
 
 	const loading = useSelector((state) => state.auth.loading);
 
 	function handleSubmit() {
 		dispatch(signInRequest(email, password));
 	}
+
+	useEffect(() => {
+		const permissions = request(PERMISSIONS.ANDROID.ACCESS_FINE_LOCATION).then(
+			(result) => {
+				if (result === 'denied') {
+					checkNotifications().then(({ status, settings }) => {
+						console.log(status);
+					});
+				}
+			}
+		);
+		setPermission(permissions);
+	}, []);
 
 	return (
 		<Background>
@@ -61,16 +82,24 @@ export default function SignIn({ navigation }) {
 					<SubmitButton loading={loading} onPress={handleSubmit}>
 						Acessar
 					</SubmitButton>
+
+					<ForgotPassword onPress={() => navigation.navigate('ForgotPassword')}>
+						<ForgotPasswordText>Esqueci minha senha</ForgotPasswordText>
+					</ForgotPassword>
 				</Form>
 
 				<SignLink onPress={() => navigation.navigate('SignUp')}>
 					<SignLinkText
-						style={{ justifyContent: 'center', alignItems: 'center' }}
+						style={{
+							justifyContent: 'center',
+							alignItems: 'center',
+							marginTop: 8,
+						}}
 					>
 						Criar conta gratuita
 					</SignLinkText>
 
-					<View style={{ height: 15 }} />
+					<View style={{ height: 12 }} />
 
 					<SignLinkText
 						style={{
@@ -84,7 +113,7 @@ export default function SignIn({ navigation }) {
 						Administração
 					</SignLinkText>
 
-					<View style={{ height: 30 }} />
+					<View style={{ height: 15 }} />
 
 					<SignLinkText
 						style={{

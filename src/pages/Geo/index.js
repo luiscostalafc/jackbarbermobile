@@ -1,12 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useSelector } from 'react-redux';
-import { View, ActivityIndicator, StyleSheet, Alert } from 'react-native';
+import { View, ActivityIndicator, StyleSheet } from 'react-native';
 
-import {
-	PERMISSIONS,
-	request,
-	checkNotifications,
-} from 'react-native-permissions';
 import Geolocation from 'react-native-geolocation-service';
 import MapView, { Marker } from 'react-native-maps';
 import Icon from 'react-native-vector-icons/MaterialIcons';
@@ -25,7 +20,6 @@ function Geo() {
 	const [points, setPoints] = useState([]);
 	const [location, setLocation] = useState([]);
 	const [show, setShow] = useState(false);
-	const [permission, setPermission] = useState(null);
 
 	const [region, setRegion] = useState({
 		latitude: 0,
@@ -36,24 +30,6 @@ function Geo() {
 	});
 
 	const user = useSelector((state) => state.user.profile);
-
-	useEffect(() => {
-		const permissions = request(PERMISSIONS.ANDROID.ACCESS_FINE_LOCATION).then(
-			(result) => {
-				if (result === 'denied') {
-					checkNotifications().then(({ status, settings }) => {
-						if (status === 'denied') {
-							Alert.alert(
-								'Atenção',
-								'Você precisa liberar a localização do dispositivo, dependendo do aparelho é necessário renicializar'
-							);
-						}
-					});
-				}
-			}
-		);
-		setPermission(permissions);
-	}, [loading]);
 
 	useEffect(() => {
 		Geolocation.getCurrentPosition(
@@ -73,9 +49,9 @@ function Geo() {
 			(error) => {
 				console.log(error);
 			},
-			{ enableHighAccuracy: true, maximumAge: 10000, timeout: 10000 }
+			{ enableHighAccuracy: true, maximumAge: 10000, timeout: 100000 }
 		);
-	}, [permission]);
+	}, []);
 
 	useEffect(() => {
 		async function getData() {
