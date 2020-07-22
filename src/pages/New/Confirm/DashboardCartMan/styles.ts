@@ -29,8 +29,9 @@ export const Product = styled.View`
 `;
 
 export const ProductImage = styled.Image`
-  height: 122px;
-  width: 122px;
+  height: 140px;
+	width: 140px;
+	border-radius: 5px;
   align-self: center;
 `;
 
