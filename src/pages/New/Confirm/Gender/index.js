@@ -19,7 +19,7 @@ export default function Gender() {
 						navigations.navigate('WomanServices');
 					}}
 				>
-					Jack Hair
+					ELLA
 				</SubmitButton>
 				<AvatarMan
 					source={require('../../../../assets/images/servico_man.jpeg')}
@@ -29,7 +29,7 @@ export default function Gender() {
 						navigations.navigate('ManServices');
 					}}
 				>
-					Jack Barber
+					ELLE
 				</SubmitButton>
 			</Container>
 		</Background>
