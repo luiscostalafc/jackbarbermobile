@@ -1,6 +1,7 @@
 import React, { useRef, useState, useEffect } from 'react';
 import { Image, View, Linking } from 'react-native';
 import { useDispatch, useSelector } from 'react-redux';
+import Icon from 'react-native-vector-icons/FontAwesome';
 
 import PropTypes from 'prop-types';
 
@@ -93,30 +94,14 @@ export default function SignIn({ navigation }) {
 						style={{
 							justifyContent: 'center',
 							alignItems: 'center',
-							marginTop: 8,
+							marginTop: 10,
 						}}
 					>
 						Criar conta gratuita
 					</SignLinkText>
 				</SignLink>
 
-				<View style={{ height: 12 }} />
-
-				<SignLink>
-					<SignLinkText
-						style={{
-							justifyContent: 'center',
-							alignItems: 'center',
-						}}
-						onPress={() =>
-							Linking.openURL('https://nifty-jennings-1795d9.netlify.app/')
-						}
-					>
-						Administração
-					</SignLinkText>
-				</SignLink>
-
-				<View style={{ height: 15 }} />
+				<View style={{ height: 2 }} />
 
 				<SignLink>
 					<SignLinkText
@@ -124,12 +109,31 @@ export default function SignIn({ navigation }) {
 							color: '#EEDD82',
 							justifyContent: 'center',
 							alignItems: 'center',
-							fontSize: 18,
+							fontSize: 15,
 						}}
 						onPress={() => Linking.openURL('https://salaojack.com/')}
 					>
 						Visite nosso site!
 					</SignLinkText>
+				</SignLink>
+
+				<View style={{ height: 10 }} />
+
+				<SignLink>
+					<Icon.Button
+						name="whatsapp"
+						backgroundColor="#34af23"
+						onPress={() =>
+							Linking.openURL(
+								'https://api.whatsapp.com/send?phone=553192268984&text=&source=&data=&app_absent='
+							)
+						}
+					>
+						<SignLinkText style={{ fontSize: 13 }}>
+							{' '}
+							Marcar pelo Whatsapp
+						</SignLinkText>
+					</Icon.Button>
 				</SignLink>
 			</Container>
 		</Background>

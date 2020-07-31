@@ -13,9 +13,7 @@ export default function Gender() {
 	return (
 		<Background>
 			<Container>
-				<AvatarWoman
-					source={require('../../../../assets/images/woman_header.jpg')}
-				/>
+				<AvatarWoman source={{ uri: 'https://i.imgur.com/BenLE2T.jpg' }} />
 				<SubmitButton
 					onPress={() => {
 						navigations.navigate('WomanServices');
@@ -23,9 +21,7 @@ export default function Gender() {
 				>
 					ELA
 				</SubmitButton>
-				<AvatarMan
-					source={require('../../../../assets/images/man_header.jpg')}
-				/>
+				<AvatarMan source={{ uri: 'https://i.imgur.com/lYx1SZ1.jpg' }} />
 				<SubmitButton
 					onPress={() => {
 						navigations.navigate('ManServices');
