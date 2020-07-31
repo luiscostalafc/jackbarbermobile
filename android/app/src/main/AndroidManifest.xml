@@ -19,6 +19,7 @@
         android:value="AIzaSyDwduhzozHzlYpnRoODlQT7Y6kbqahaA8g"/>
       <activity
 			  android:launchMode="singleTop"
+				android:screenOrientation="portrait"
 			  android:theme="@style/SplashTheme"
         android:name=".MainActivity"
         android:label="@string/app_name"
