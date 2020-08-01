@@ -55,7 +55,7 @@ export default function SignIn({ navigation }) {
 	return (
 		<Background>
 			<Container>
-				<Image source={logo} />
+				<Image source={logo} style={{ marginTop: 10 }} />
 
 				<Form>
 					<FormInput
@@ -94,7 +94,7 @@ export default function SignIn({ navigation }) {
 						style={{
 							justifyContent: 'center',
 							alignItems: 'center',
-							marginTop: 10,
+							marginTop: 5,
 						}}
 					>
 						Criar conta gratuita
@@ -117,7 +117,7 @@ export default function SignIn({ navigation }) {
 					</SignLinkText>
 				</SignLink>
 
-				<View style={{ height: 10 }} />
+				<View style={{ height: 3 }} />
 
 				<SignLink>
 					<Icon.Button
