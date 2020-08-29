@@ -5,6 +5,7 @@ import api from '../../services/api';
 
 import logo from '../../assets/logo.png';
 import Background from '../../components/Background';
+import navigations from '../../services/navigations';
 
 import {
 	Container,
@@ -21,9 +22,13 @@ export default function ForgotPassword({ navigation }) {
 
 	async function handleSubmit() {
 		try {
-			await api.post('forgot', {
-				email,
-			});
+			await api.post(
+				'forgot',
+				{
+					email,
+				},
+				navigations.navigate('SignIn')
+			);
 			setEmail(email);
 			Alert.alert(
 				'Confira seu e-mail! 📨',

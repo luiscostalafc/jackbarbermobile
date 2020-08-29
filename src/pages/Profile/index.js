@@ -5,7 +5,6 @@ import { useDispatch, useSelector } from 'react-redux';
 import Background from '../../components/Background';
 import { signOut } from '../../store/modules/auth/actions';
 import { updateProfileRequest } from '../../store/modules/user/actions';
-import { phoneNumber } from '../../services/mask';
 
 import {
 	Container,
@@ -25,10 +24,8 @@ export default function Profile() {
 	const oldPasswordRef = useRef();
 	const passwordRef = useRef();
 	const confirmPasswordRef = useRef();
-	const phoneRef = useRef();
 
 	const [name, setName] = useState(profile.name);
-	const [phone, setPhone] = useState(profile.phone || '');
 	const [email, setEmail] = useState(profile.email);
 	const [oldPassword, setOldPassword] = useState('');
 	const [password, setPassword] = useState('');
@@ -45,7 +42,6 @@ export default function Profile() {
 			updateProfileRequest({
 				name,
 				email,
-				phone,
 				oldPassword,
 				password,
 				confirmPassword,
@@ -69,21 +65,9 @@ export default function Profile() {
 						autoCapitalize="none"
 						placeholder="Nome completo"
 						returnKeyType="next"
-						onSubmitEditing={() => phoneRef.current.focus()}
+						onSubmitEditing={() => emailRef.current.focus()}
 						value={name}
 						onChangeText={setName}
-					/>
-
-					<FormInput
-						icon="smartphone"
-						autoCorrect={false}
-						ref={phoneRef}
-						autoCapitalize="none"
-						placeholder="Seu número com DDD"
-						returnKeyType="next"
-						onSubmitEditing={() => emailRef.current.focus()}
-						value={phoneNumber(phone)}
-						onChangeText={setPhone}
 					/>
 
 					<FormInput
